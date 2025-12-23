@@ -1,0 +1,21 @@
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.empty {
+  text-align: center;
+  color: #777;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
