@@ -11,7 +11,7 @@ export const registerUser = createAsyncThunk(
   async (values, thunkAPI) => {
     try {
       const res = await api.post('/auth/register', values);
-      const { token, user } = res.data.data || {};
+      const { token, user } = res.data.data;
       setAuthHeader(`Bearer ${token}`);
       return { token, user };
     } catch (e) {

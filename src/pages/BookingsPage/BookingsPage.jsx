@@ -45,7 +45,11 @@ export default function BookingsPage() {
     <div className={style.page}>
       <h1 className={style.title}>My bookings</h1>
 
-      {bookings.length === 0 && <p className={style.empty}>No bookings yet</p>}
+      {bookings.length === 0 && (
+        <p className={style.empty}>
+          No bookings yet. <br /> Please create a booking
+        </p>
+      )}
 
       <div className={style.list}>
         {bookings.map((booking) => (
