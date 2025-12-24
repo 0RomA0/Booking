@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { logInUser } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
-import style from './LoginForm.module.css';
+import style from './LogInForm.module.css';
 
 export default function LoginForm() {
   const dispatch = useDispatch();

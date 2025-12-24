@@ -14,7 +14,7 @@ const UsersPage = lazy(() => import('../../pages/UsersPage/UsersPage'));
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage'),
 );
-const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
+const LoginPage = lazy(() => import('../../pages/LogInPage/LoginPage'));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage'),
 );
