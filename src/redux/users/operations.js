@@ -12,3 +12,15 @@ export const fetchBusinessUsers = createAsyncThunk(
     }
   },
 );
+
+export const deleteUser = createAsyncThunk(
+  'users/deleteUser',
+  async (userId, thunkAPI) => {
+    try {
+      await api.delete(`/users/${userId}`);
+      return userId; // повертаємо id для видалення з state
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.response?.data || e.message);
+    }
+  },
+);

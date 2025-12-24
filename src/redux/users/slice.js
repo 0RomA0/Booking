@@ -1,6 +1,6 @@
 // slice.js
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchBusinessUsers } from './operations';
+import { deleteUser, fetchBusinessUsers } from './operations';
 
 const usersSlice = createSlice({
   name: 'users',
@@ -20,6 +20,14 @@ const usersSlice = createSlice({
       })
       .addCase(fetchBusinessUsers.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.businessUsers = state.businessUsers.filter(
+          (user) => user._id !== action.payload,
+        );
+      })
+      .addCase(deleteUser.rejected, (state, action) => {
         state.error = action.payload;
       });
   },

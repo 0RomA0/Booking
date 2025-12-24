@@ -1,18 +1,45 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMyBookings } from '../../redux/bookings/operations';
+import {
+  fetchMyBookings,
+  updateBooking,
+  deleteBooking,
+} from '../../redux/bookings/operations';
+import { selectBookingsList } from '../../redux/bookings/selectors';
 
 import BookingCard from '../../components/BookingCard/BookingCard';
-import BookingModal from '../../components/BookingModal/BookingModal';
+import EditBookingModal from '../../components/EditBookingModal/EditBookingModal';
+import ConfirmDeleteBookingModal from '../../components/ConfirmDeleteBookingModal/ConfirmDeleteBookingModal';
 import style from './BookingsPage.module.css';
+import toast from 'react-hot-toast';
 
 export default function BookingsPage() {
   const dispatch = useDispatch();
-  const bookings = useSelector((state) => state.bookings.list);
+  const bookings = useSelector(selectBookingsList);
+
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [deletingBooking, setDeletingBooking] = useState(null);
 
   useEffect(() => {
     dispatch(fetchMyBookings());
   }, [dispatch]);
+
+  const handleSave = (updatedBooking) => {
+    dispatch(
+      updateBooking({
+        bookingId: updatedBooking._id,
+        date: updatedBooking.date,
+        status: updatedBooking.status,
+      }),
+    );
+    setSelectedBooking(null);
+  };
+
+  const handleDelete = (bookingId) => {
+    dispatch(deleteBooking(bookingId));
+    setDeletingBooking(null);
+    toast.success('Deleted boking successfully!');
+  };
 
   return (
     <div className={style.page}>
@@ -22,11 +49,35 @@ export default function BookingsPage() {
 
       <div className={style.list}>
         {bookings.map((booking) => (
-          <BookingCard key={booking._id} booking={booking} />
+          <BookingCard
+            key={booking._id}
+            booking={booking}
+            onEdit={() => {
+              setSelectedBooking(booking);
+              setDeletingBooking(null);
+            }}
+            onDelete={() => {
+              setDeletingBooking(booking);
+              setSelectedBooking(null);
+            }}
+          />
         ))}
       </div>
 
-      <BookingModal />
+      {selectedBooking && (
+        <EditBookingModal
+          booking={selectedBooking}
+          onClose={() => setSelectedBooking(null)}
+          onSave={handleSave}
+        />
+      )}
+
+      <ConfirmDeleteBookingModal
+        isOpen={!!deletingBooking}
+        bookingName={deletingBooking?.business?.businessName || 'this booking'}
+        onClose={() => setDeletingBooking(null)}
+        onConfirm={() => handleDelete(deletingBooking._id)}
+      />
     </div>
   );
 }

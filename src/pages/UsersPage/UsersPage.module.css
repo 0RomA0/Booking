@@ -1,11 +1,16 @@
 .container {
-  padding: 20px;
+  margin-top: 30px;
+  padding: 0 32px;
 }
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  color: #262626;
+  margin-bottom: 24px;
 }
 
 .list {

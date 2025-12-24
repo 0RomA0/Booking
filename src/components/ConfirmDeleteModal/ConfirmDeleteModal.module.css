@@ -1,0 +1,91 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modalContent {
+  position: absolute;
+  background: #fff;
+  border-radius: 30px;
+  height: auto;
+  padding: 50px;
+  animation: appear 0.2s ease-in-out;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 0;
+  border: none;
+  border-radius: 50%;
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2px;
+  stroke: #262626;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+
+.btnCancel {
+  background-color: #ddd;
+  color: #333;
+}
+
+.btnCancel:hover {
+  background-color: #bbb;
+}
+
+.btnDelete {
+  background-color: #e63946;
+  color: white;
+}
+
+.btnDelete:hover {
+  background-color: #c5303f;
+}

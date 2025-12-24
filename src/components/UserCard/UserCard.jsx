@@ -1,9 +1,7 @@
-import { useDispatch } from 'react-redux';
 import style from './UserCard.module.css';
-import { openBookingModal } from '../../redux/bookings/slice';
 
-export default function UserCard({ user }) {
-  const dispatch = useDispatch();
+export default function UserCard({ user, onBook, onDelete }) {
+  // console.log(user);
   return (
     <div className={style.card}>
       <svg className={style.icon}>
@@ -12,17 +10,16 @@ export default function UserCard({ user }) {
       <div className={style.info}>
         <p className={style.name}>{user.name}</p>
         <p className={style.email}>{user.email}</p>
+        <p>{user.businessName}</p>
+        <p>{user.phoneNumber}</p>
       </div>
       <div className={style.actions}>
-        <button
-          className={style.btnEdit}
-          onClick={() => dispatch(openBookingModal(user))}
-        >
+        <button className={style.btnEdit} onClick={onBook}>
           <svg className={style.icon}>
             <use href="/sprite.svg#icon-edit" />
           </svg>
         </button>
-        <button className={style.btnDelete}>
+        <button className={style.btnDelete} onClick={() => onDelete(user._id)}>
           <svg className={style.icon}>
             <use href="/sprite.svg#icon-trash" />
           </svg>

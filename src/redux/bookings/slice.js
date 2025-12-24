@@ -10,36 +10,11 @@ const bookingsSlice = createSlice({
   name: 'bookings',
   initialState: {
     list: [],
-    modal: {
-      isOpen: false,
-      user: null,
-      booking: null,
-    },
     loading: false,
     error: null,
   },
 
-  reducers: {
-    openBookingModal(state, action) {
-      state.modal = {
-        isOpen: true,
-        user: action.payload,
-        booking: null,
-      };
-    },
-
-    openEditBookingModal(state, action) {
-      state.modal = {
-        isOpen: true,
-        user: action.payload.business,
-        booking: action.payload,
-      };
-    },
-
-    closeBookingModal(state) {
-      state.modal = { isOpen: false, user: null, booking: null };
-    },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder
@@ -64,8 +39,5 @@ const bookingsSlice = createSlice({
       });
   },
 });
-
-export const { openBookingModal, openEditBookingModal, closeBookingModal } =
-  bookingsSlice.actions;
 
 export default bookingsSlice.reducer;
