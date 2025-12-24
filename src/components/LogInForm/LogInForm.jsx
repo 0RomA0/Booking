@@ -1,22 +1,22 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-import { logInUser } from "../../redux/auth/operations";
-import toast from "react-hot-toast";
-import style from "./LoginForm.module.css";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { logInUser } from '../../redux/auth/operations';
+import toast from 'react-hot-toast';
+import style from './LoginForm.module.css';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
 
   const schema = Yup.object({
     email: Yup.string()
-      .email("Invalid email format (e.g. username@mail.com)")
-      .required("Email is required"),
+      .email('Invalid email format (e.g. username@mail.com)')
+      .required('Email is required'),
     password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .max(30, "Password must be at most 30 characters")
-      .required("Password is required"),
+      .min(8, 'Password must be at least 8 characters')
+      .max(30, 'Password must be at most 30 characters')
+      .required('Password is required'),
   });
 
   const {
@@ -27,8 +27,8 @@ export default function LoginForm() {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -38,7 +38,7 @@ export default function LoginForm() {
       toast.success("Great, you're logged in");
       reset();
     } catch {
-      toast.error("Login failed");
+      toast.error('Login failed');
     }
   };
 
@@ -46,7 +46,7 @@ export default function LoginForm() {
     <>
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
         <label className={style.label}>Email</label>
-        <input className={style.input} type="email" {...register("email")} />
+        <input className={style.input} type="email" {...register('email')} />
         {errors.email && (
           <span className={style.errorMessage}>{errors.email.message}</span>
         )}
@@ -55,7 +55,7 @@ export default function LoginForm() {
         <input
           className={style.input}
           type="password"
-          {...register("password")}
+          {...register('password')}
         />
         {errors.password && (
           <span className={style.errorMessage}>{errors.password.message}</span>
