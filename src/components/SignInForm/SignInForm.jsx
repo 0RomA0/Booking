@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { logInUser } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
-import style from './LogInForm.module.css';
+import style from './SignInForm.module.css';
 
-export default function LoginForm() {
+export default function LogInForm() {
   const dispatch = useDispatch();
 
   const schema = Yup.object({
