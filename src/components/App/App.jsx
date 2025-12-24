@@ -14,7 +14,7 @@ const UsersPage = lazy(() => import('../../pages/UsersPage/UsersPage'));
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage'),
 );
-const LoginPage = lazy(() => import('../../pages/LogInPage/LoginPage'));
+const LogInPage = lazy(() => import('../../pages/LogInPage/LogInPage'));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage'),
 );
@@ -53,7 +53,7 @@ function App() {
             />
             <Route
               path="/login"
-              element={<RestrictedRoute component={<LoginPage />} />}
+              element={<RestrictedRoute component={<LogInPage />} />}
             />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
